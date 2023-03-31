@@ -8,5 +8,5 @@ Clone and install the [custom aleo compiler](git@github.com:zkp-gravity/aleo-set
 
 ## Usage
 ```
-../aleo-setup/aleo/target/debug/aleo run main 1field 1field 1field
+../aleo-setup/aleo/target/debug/aleo run main $(cat inputs.txt)
 ```
