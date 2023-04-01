@@ -29,14 +29,17 @@ struct table_entry:
     a3 as field; // 1 bit
     a4 as field; // Max_Value
 
+struct upper_table_entry:
+    s0 as table_entry;
+
 function main:
-    input r0 as table_entry.private;
+    input r0 as upper_table_entry.private;
 
-    mul r0.a2 2field into r1;
-    add r0.a3 r1 into r2;
-    lookup bloomtable r0.a0 r0.a2 r2;
+    mul r0.s0.a2 2field into r1;
+    add r0.s0.a3 r1 into r2;
+    lookup bloomtable r0.s0.a0 r0.s0.a2 r2;
 
-    call and_values r0.a3 r0.a3 r0.a3 r0.a3 into r3;
+    call and_values r0.s0.a3 r0.s0.a3 r0.s0.a3 r0.s0.a3 into r3;
 
     // summation proof
     // NOTE: can perhaps be done with a lookup
@@ -46,7 +49,7 @@ function main:
     // argmax proof
     // NOTE: first part can be done with a lookup
     // part a)
-    gt r0.a3 r0.a3 into r6;
-    ternary r6 r0.a3 r0.a3 into r7;
-    assert.eq r0.a4 r7;
+    gt r0.s0.a3 r0.s0.a3 into r6;
+    ternary r6 r0.s0.a3 r0.s0.a3 into r7;
+    assert.eq r0.s0.a4 r7;
 

@@ -1,7 +1,9 @@
 {
-    a0: 1field,
-    a1: 2field,
-    a2: 2field,
-    a3: 1field,
-    a4: 1field
+    s0: {
+            a0: 1field,
+            a1: 2field,
+            a2: 2field,
+            a3: 1field,
+            a4: 1field
+    }
 }
