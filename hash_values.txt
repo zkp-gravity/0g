@@ -1,0 +1,506 @@
+{
+    info0: {
+        decomposition: {
+            index1: 358field,
+            index2: 442field,
+            msb: 0field
+        },
+        hash: 452966field,
+        quotient: 60938780181158238field
+    },
+    info1: {
+        decomposition: {
+            index1: 769field,
+            index2: 86field,
+            msb: 0field
+        },
+        hash: 88833field,
+        quotient: 1410232109894402169field
+    },
+    info2: {
+        decomposition: {
+            index1: 267field,
+            index2: 344field,
+            msb: 0field
+        },
+        hash: 352523field,
+        quotient: 2487955629421481691field
+    },
+    info3: {
+        decomposition: {
+            index1: 583field,
+            index2: 693field,
+            msb: 0field
+        },
+        hash: 710215field,
+        quotient: 8957315789379204136field
+    },
+    info4: {
+        decomposition: {
+            index1: 223field,
+            index2: 480field,
+            msb: 1field
+        },
+        hash: 1540319field,
+        quotient: 671830815964263field
+    },
+    info5: {
+        decomposition: {
+            index1: 898field,
+            index2: 227field,
+            msb: 0field
+        },
+        hash: 233346field,
+        quotient: 32720003209961237field
+    },
+    info6: {
+        decomposition: {
+            index1: 316field,
+            index2: 22field,
+            msb: 1field
+        },
+        hash: 1071420field,
+        quotient: 118985436089155572field
+    },
+    info7: {
+        decomposition: {
+            index1: 474field,
+            index2: 644field,
+            msb: 0field
+        },
+        hash: 659930field,
+        quotient: 4566793772572173267field
+    },
+    info8: {
+        decomposition: {
+            index1: 376field,
+            index2: 380field,
+            msb: 1field
+        },
+        hash: 1438072field,
+        quotient: 1356473119879030335field
+    },
+    info9: {
+        decomposition: {
+            index1: 699field,
+            index2: 196field,
+            msb: 0field
+        },
+        hash: 201403field,
+        quotient: 6011616527736608675field
+    },
+    info10: {
+        decomposition: {
+            index1: 55field,
+            index2: 421field,
+            msb: 0field
+        },
+        hash: 431159field,
+        quotient: 7894169591572351516field
+    },
+    info11: {
+        decomposition: {
+            index1: 455field,
+            index2: 225field,
+            msb: 0field
+        },
+        hash: 230855field,
+        quotient: 277928543989732623field
+    },
+    info12: {
+        decomposition: {
+            index1: 240field,
+            index2: 217field,
+            msb: 0field
+        },
+        hash: 222448field,
+        quotient: 1974211924576835632field
+    },
+    info13: {
+        decomposition: {
+            index1: 607field,
+            index2: 972field,
+            msb: 0field
+        },
+        hash: 995935field,
+        quotient: 3943447135857895719field
+    },
+    info14: {
+        decomposition: {
+            index1: 842field,
+            index2: 811field,
+            msb: 1field
+        },
+        hash: 1879882field,
+        quotient: 693654305436699099field
+    },
+    info15: {
+        decomposition: {
+            index1: 204field,
+            index2: 863field,
+            msb: 0field
+        },
+        hash: 883916field,
+        quotient: 27941179773368349field
+    },
+    info16: {
+        decomposition: {
+            index1: 93field,
+            index2: 937field,
+            msb: 1field
+        },
+        hash: 2008157field,
+        quotient: 1031276587004402702field
+    },
+    info17: {
+        decomposition: {
+            index1: 965field,
+            index2: 63field,
+            msb: 0field
+        },
+        hash: 65477field,
+        quotient: 551196526326808285field
+    },
+    info18: {
+        decomposition: {
+            index1: 796field,
+            index2: 807field,
+            msb: 1field
+        },
+        hash: 1875740field,
+        quotient: 7997913510759003452field
+    },
+    info19: {
+        decomposition: {
+            index1: 803field,
+            index2: 606field,
+            msb: 1field
+        },
+        hash: 1669923field,
+        quotient: 102056179116790539field
+    },
+    info20: {
+        decomposition: {
+            index1: 506field,
+            index2: 232field,
+            msb: 1field
+        },
+        hash: 1286650field,
+        quotient: 298712700875277234field
+    },
+    info21: {
+        decomposition: {
+            index1: 47field,
+            index2: 151field,
+            msb: 0field
+        },
+        hash: 154671field,
+        quotient: 3924456192427580276field
+    },
+    info22: {
+        decomposition: {
+            index1: 439field,
+            index2: 176field,
+            msb: 1field
+        },
+        hash: 1229239field,
+        quotient: 521933367263163327field
+    },
+    info23: {
+        decomposition: {
+            index1: 383field,
+            index2: 113field,
+            msb: 0field
+        },
+        hash: 116095field,
+        quotient: 2400157088077084358field
+    },
+    info24: {
+        decomposition: {
+            index1: 617field,
+            index2: 208field,
+            msb: 1field
+        },
+        hash: 1262185field,
+        quotient: 2388552416076129field
+    },
+    info25: {
+        decomposition: {
+            index1: 1014field,
+            index2: 750field,
+            msb: 0field
+        },
+        hash: 769014field,
+        quotient: 361846940740203599field
+    },
+    info26: {
+        decomposition: {
+            index1: 767field,
+            index2: 440field,
+            msb: 0field
+        },
+        hash: 451327field,
+        quotient: 569810880694938802field
+    },
+    info27: {
+        decomposition: {
+            index1: 379field,
+            index2: 828field,
+            msb: 0field
+        },
+        hash: 848251field,
+        quotient: 1185816667576162752field
+    },
+    info28: {
+        decomposition: {
+            index1: 590field,
+            index2: 596field,
+            msb: 0field
+        },
+        hash: 610894field,
+        quotient: 6822523526149194742field
+    },
+    info29: {
+        decomposition: {
+            index1: 838field,
+            index2: 496field,
+            msb: 1field
+        },
+        hash: 1557318field,
+        quotient: 1127026993414358field
+    },
+    info30: {
+        decomposition: {
+            index1: 299field,
+            index2: 101field,
+            msb: 1field
+        },
+        hash: 1152299field,
+        quotient: 5522522059822786032field
+    },
+    info31: {
+        decomposition: {
+            index1: 519field,
+            index2: 311field,
+            msb: 0field
+        },
+        hash: 318983field,
+        quotient: 3024138553185051023field
+    },
+    info32: {
+        decomposition: {
+            index1: 985field,
+            index2: 163field,
+            msb: 1field
+        },
+        hash: 1216473field,
+        quotient: 26283040field
+    },
+    info33: {
+        decomposition: {
+            index1: 187field,
+            index2: 866field,
+            msb: 1field
+        },
+        hash: 1935547field,
+        quotient: 457998228378923875field
+    },
+    info34: {
+        decomposition: {
+            index1: 573field,
+            index2: 771field,
+            msb: 0field
+        },
+        hash: 790077field,
+        quotient: 2233252634330112493field
+    },
+    info35: {
+        decomposition: {
+            index1: 52field,
+            index2: 207field,
+            msb: 0field
+        },
+        hash: 212020field,
+        quotient: 2585211939861647219field
+    },
+    info36: {
+        decomposition: {
+            index1: 1007field,
+            index2: 457field,
+            msb: 0field
+        },
+        hash: 468975field,
+        quotient: 7484939552204305032field
+    },
+    info37: {
+        decomposition: {
+            index1: 84field,
+            index2: 104field,
+            msb: 0field
+        },
+        hash: 106580field,
+        quotient: 12578741941077876field
+    },
+    info38: {
+        decomposition: {
+            index1: 694field,
+            index2: 442field,
+            msb: 1field
+        },
+        hash: 1501878field,
+        quotient: 3338568168180825field
+    },
+    info39: {
+        decomposition: {
+            index1: 411field,
+            index2: 683field,
+            msb: 1field
+        },
+        hash: 1748379field,
+        quotient: 548109991716282048field
+    },
+    info40: {
+        decomposition: {
+            index1: 443field,
+            index2: 806field,
+            msb: 1field
+        },
+        hash: 1874363field,
+        quotient: 1383418600254977883field
+    },
+    info41: {
+        decomposition: {
+            index1: 658field,
+            index2: 29field,
+            msb: 0field
+        },
+        hash: 30354field,
+        quotient: 3227059544443872649field
+    },
+    info42: {
+        decomposition: {
+            index1: 433field,
+            index2: 70field,
+            msb: 0field
+        },
+        hash: 72113field,
+        quotient: 53195622509303986field
+    },
+    info43: {
+        decomposition: {
+            index1: 520field,
+            index2: 820field,
+            msb: 0field
+        },
+        hash: 840200field,
+        quotient: 6967419704808326536field
+    },
+    info44: {
+        decomposition: {
+            index1: 191field,
+            index2: 997field,
+            msb: 1field
+        },
+        hash: 2069695field,
+        quotient: 1301278944564285327field
+    },
+    info45: {
+        decomposition: {
+            index1: 54field,
+            index2: 383field,
+            msb: 0field
+        },
+        hash: 392246field,
+        quotient: 8391738999949909field
+    },
+    info46: {
+        decomposition: {
+            index1: 707field,
+            index2: 33field,
+            msb: 0field
+        },
+        hash: 34499field,
+        quotient: 4249067765961153251field
+    },
+    info47: {
+        decomposition: {
+            index1: 276field,
+            index2: 216field,
+            msb: 1field
+        },
+        hash: 1270036field,
+        quotient: 5004557165201443623field
+    },
+    info48: {
+        decomposition: {
+            index1: 255field,
+            index2: 268field,
+            msb: 0field
+        },
+        hash: 274687field,
+        quotient: 1395336247061191field
+    },
+    info49: {
+        decomposition: {
+            index1: 892field,
+            index2: 711field,
+            msb: 0field
+        },
+        hash: 728956field,
+        quotient: 6241456837288611515field
+    },
+    info50: {
+        decomposition: {
+            index1: 696field,
+            index2: 779field,
+            msb: 1field
+        },
+        hash: 1846968field,
+        quotient: 6361817545402576field
+    },
+    info51: {
+        decomposition: {
+            index1: 179field,
+            index2: 283field,
+            msb: 0field
+        },
+        hash: 289971field,
+        quotient: 3026237146351236828field
+    },
+    info52: {
+        decomposition: {
+            index1: 838field,
+            index2: 387field,
+            msb: 0field
+        },
+        hash: 397126field,
+        quotient: 6801204568037526field
+    },
+    info53: {
+        decomposition: {
+            index1: 81field,
+            index2: 229field,
+            msb: 0field
+        },
+        hash: 234577field,
+        quotient: 47050762413515337field
+    },
+    info54: {
+        decomposition: {
+            index1: 198field,
+            index2: 197field,
+            msb: 1field
+        },
+        hash: 1250502field,
+        quotient: 6649287143220352598field
+    },
+    info55: {
+        decomposition: {
+            index1: 71field,
+            index2: 600field,
+            msb: 1field
+        },
+        hash: 1663047field,
+        quotient: 5694703302057726439field
+    }
+}
