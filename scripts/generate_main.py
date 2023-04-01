@@ -4,12 +4,12 @@ k=2**10
 bloom_filters=56
 input_value_bits=28
 hash_digest_value_bits=hash_functions_per_bloom_filter*discriminators + 1 
-bloom_filter_value_bits=discriminators*hash_functions_per_bloom_filter
+bloom_filter_value_bits=hash_functions_per_bloom_filter*discriminators
 
 code = f"program main.aleo;\n\n"
 
 # NOTE: we need 7864320 table entries in total
-# Amount of entries should be `discriminators` * `bloom_filters` * `k`, the values of entries could be random numbers for now
+# Amount of entries should be `discriminators` * `bloom_filters` * `k`, the values of entries
 tableentrycounter = 0
 for i in range(bloom_filters):
     for j in range(discriminators):
@@ -18,10 +18,9 @@ for i in range(bloom_filters):
     input field;
     input field; 
 """
-        entries = k
-        for entry in range(entries):
-            tableentrycounter += 1
-            code += f"    entry {tableentrycounter}field {tableentrycounter}field {tableentrycounter}field;\n"
+        for entry in range(k):
+            tableentrycounter += 1 # [0,2**10]              [0,1]
+            code += f"    entry {tableentrycounter}field {tableentrycounter}field 0field;\n"
         code += f"\n"
 
 input_bits = "{" + f"\n"
