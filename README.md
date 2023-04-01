@@ -1,7 +1,10 @@
-# 0g
 ![](zero-gravity-banner.png)
 
-Zero-knowledge weightless machine learning
+Zero Gravity is a system for proving an inference pass (i.e. a classification) for a pre-trained, public Weightless Neural Network run on a private input.  Zero Gravity builds upon the recent BTHOWeN model by [Susskind et al (2022)](https://arxiv.org/abs/2203.01479), in which the authors improve upon earlier WNN models in a number of interesting ways.  Most importantly for this hackathon project, they helpfully provide an [implementation](https://github.com/ZSusskind/BTHOWeN) complete with pre-trained models and reproducible benchmarks.
+
+See our [blog post](https://hackmd.io/@77sjNbqjST6HRnGPQyY9Dw/BkNGwbUW3) for an extensive description!
+
+Built as part of the ZKHack hackathon, Lisbon, 2023.
 
 ## Setup
 
