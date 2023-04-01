@@ -1,1 +1,7 @@
-1field 2field 2field 1field 1field
+{
+    a0: 1field,
+    a1: 2field,
+    a2: 2field,
+    a3: 1field,
+    a4: 1field
+}

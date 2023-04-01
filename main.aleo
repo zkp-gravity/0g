@@ -22,28 +22,31 @@ table bloomtable:
     entry 7field 8field 9field;
     entry 10field 11field 12field;
 
+struct table_entry:
+    a0 as field; // 5 bits
+    a1 as field; // 5 bits
+    a2 as field; // 13 bits
+    a3 as field; // 1 bit
+    a4 as field; // Max_Value
+
 function main:
-    input r0 as field.private; // 5 bits
-    input r1 as field.private; // 5 bits
-    input r2 as field.private; // 13 bits
-    input r3 as field.private; // 1 bit
-    input r4 as field.private; // Max_Value
+    input r0 as table_entry.private;
 
-    mul r2 2field into r5;
-    add r3 r5 into r6;
-    lookup bloomtable r0 r2 r6;
+    mul r0.a2 2field into r1;
+    add r0.a3 r1 into r2;
+    lookup bloomtable r0.a0 r0.a2 r2;
 
-    call and_values r3 r3 r3 r3 into r7;
+    call and_values r0.a3 r0.a3 r0.a3 r0.a3 into r3;
 
     // summation proof
     // NOTE: can perhaps be done with a lookup
-    add r7 r7 into r8;
-    add r8 r8 into r9;
+    add r3 r3 into r4;
+    add r4 r4 into r5;
 
     // argmax proof
     // NOTE: first part can be done with a lookup
     // part a)
-    gt r3 r3 into r10;
-    ternary r10 r3 r3 into r11;
-    assert.eq r4 r11;
+    gt r0.a3 r0.a3 into r6;
+    ternary r6 r0.a3 r0.a3 into r7;
+    assert.eq r0.a4 r7;
 
