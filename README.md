@@ -1,4 +1,5 @@
 # 0g
+![](zero-gravity-banner.png)
 
 Zero-knowledge weightless machine learning
 
