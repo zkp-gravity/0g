@@ -13,7 +13,7 @@ def main(xs):
     bloom_filter_value_bits=hash_functions_per_bloom_filter*discriminators
 
     assert n_hash_bits == 21
-    p = 2 ** n_hash_bits - 1
+    p = 2 ** n_hash_bits - 9
 
     hash_values = [(x * x * x) % p for x in xs]
     quotients = [(x * x * x) // p for x in xs]
