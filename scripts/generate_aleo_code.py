@@ -49,6 +49,17 @@ def main(xs):
                 tables += f"\n"
         f.write(tables)
 
+        range_check_table = ""
+        range_check_table += f"""table range_table_bloom:
+    input field;
+    input field;
+    input field;\n"""
+        for i in range(bloom_filters):
+            range_check_table += f"    entry {i}field 0field 0field;\n"
+        tables += f"\n"
+        f.write(tables)
+
+
         f.write("\n")
         f.write(f"struct Inputs:\n")
         for i in range(len(xs)):
@@ -78,6 +89,7 @@ def main(xs):
         # bloom_filter_values structs
         bloom_filter_bits_str = f"struct BloomFilterValue:\n"
         for i in range(bloom_filter_value_bits):
+            # TODO: probably more informative to call these hash_{some_index}_discriminator_{some_index}
             bloom_filter_bits_str += f"      bit{i} as field;\n"
         bloom_filter_bits_str += f"\n"
         bloom_filter_bits_str += f"struct BloomFilterBits:\n"
@@ -104,42 +116,77 @@ def main(xs):
         f.write("\n")
 
         f.write(f"closure validate_bit_decomposition:\n")
-
-        f.write("    input r0 as field;\n")
+        f.write(f"    input r0 as field;\n")
         f.write(f"    input r1 as HashBits;\n")
         f.write("\n")
-
-
-        f.write("    // We don't have to validate that the indices are 10-bit integers, because\n")
-        f.write("    // we'll use them in table lookups later!\n")
-
-        f.write("    // Validate bit constraint on MSB\n")
+        f.write(f"    // We don't have to validate that the indices are 10-bit integers, because\n")
+        f.write(f"    // we'll use them in table lookups later!\n")
+        f.write(f"    // Validate bit constraint on MSB\n")
         f.write(f"    sub 1field r1.msb into r2;\n")
         f.write(f"    mul r1.msb r2 into r3;\n")
         f.write(f"    assert.eq 0field r3;\n")
         f.write("\n")
-
-        f.write("    // Recompute x\n")
+        f.write(f"    // Recompute x\n")
         f.write(f"    mul r1.msb {1 << 10}field into r4;\n")
         f.write(f"    add r4 r1.index1 into r5;\n")
         f.write(f"    mul r5 {1 << 10}field into r6;\n")
         f.write(f"    add r6 r1.index2 into r7;\n")
-
         f.write("\n")
-        f.write("    // Assert recomputed value equals first argument\n")
+        f.write(f"    // Assert recomputed value equals first argument\n")
         f.write(f"    assert.eq r0 r7;\n")
+
+        f.write(f"closure and_summation_argmax:\n")
+        f.write(f"input r0 as BloomFilterBits;\n")
+        f.write(f"input r1 as field;\n") # max value
+        f.write(f"input r2 as field;\n") # max value discriminator index
+        registers_used = 3
+        and_result = [[[-1] for i in range(discriminators)] for j in range(bloom_filters)]
+        for i in range(bloom_filters):
+            for j in range(discriminators):
+                f.write(f"mul r0.in{i}.bit{j} r0.in{i}.bit{discriminators + j} into r{registers_used}\n")
+                and_result[i][j] = f"r{registers_used}"
+                registers_used += 1
+
+        summation_result = [[-1] for i in range(discriminators)]
+        for i in range(discriminators):
+            for j in range(bloom_filters):
+                assert(and_result[j][i] != -1)
+                if i == 0:
+                    f.write(f"add {and_result[j][i]} {and_result[j+1][i]} r{registers_used}")
+                else:
+                    f.write(f"add {and_result[j][i]} r{registers_used - 1} r{registers_used}")
+                registers_used += 1
+            summation_result[i] = f"r{registers_used - 1}"
+
+        registers_used += 1
+        for i in range(discriminators):
+            f.write(f"sub r1 {summation_result[i]} r{registers_used}")
+            registers_used += 1
+            f.write(f"lookup range_check_table r{registers_used} 0 0")
+            
+            f.write(f"is.eq {i} r2 r{registers_used}")
+            registers_used += 1
+            f.write(f"is.eq r1 {summation_result[i]} r{registers_used}")
+            registers_used += 1
+            f.write(f"ternary r{registers_used - 2} r{registers_used - 1} true into r{registers_used}")
+            registers_used += 1
+            f.write(f"assert.eq r{registers_used - 1} true")
+
 
         f.write("\n")
         f.write("function main:\n")
         f.write(f"    input r0 as Inputs.private;\n")
         f.write(f"    input r1 as HashInfos.private;\n")
         f.write(f"    input r2 as BloomFilterBits.private;\n")
+        f.write(f"    input r3 as max_discriminator_value.private;\n")
+        f.write(f"    input r4 as max_discriminator.private;\n")
         for i in range(bloom_filters):
             f.write(f"\n    call validate_hash r0.in{i} r1.info{i}.hash r1.info{i}.quotient;\n")
             f.write(f"    call validate_bit_decomposition r1.info{i}.hash r1.info{i}.decomposition;\n")
             for j in range(discriminators):
                 f.write(f"    lookup bloomtable_{i}_{j} r1.info{i}.decomposition.index1 r2.in{i}.bit{j} 0field;\n")
                 f.write(f"    lookup bloomtable_{i}_{j} r1.info{i}.decomposition.index2 r2.in{i}.bit{10+j} 0field;\n")
+        f.write(f"call and_summation_argmax r2 r3 r4")
     
     with open("inputs.txt", "w") as f:
         fields_string = ", ".join([f"in{i}: {x}field" for i, x in enumerate(xs)])
