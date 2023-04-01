@@ -14,5 +14,5 @@ python3 generate_main.py
 
 ```
 python3 generate_aleo_code.py 56
-../aleo-setup/aleo/target/debug/aleo run main "$(cat inputs.txt)" "$(cat hash_bits.txt)" "$(cat inputs/bloom_filter_bits.txt)"
+../aleo-setup/aleo/target/debug/aleo run main "$(cat inputs.txt)" "$(cat hash_bits.txt)" "$(cat inputs/bloom_filter_bits.txt)" $(cat max_discriminator.txt) "$(cat max_discriminator_index.txt)"
 ```

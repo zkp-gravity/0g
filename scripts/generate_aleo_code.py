@@ -50,7 +50,7 @@ def main(xs):
         f.write(tables)
 
         range_check_table = ""
-        range_check_table += f"""table range_table_bloom:
+        range_check_table += f"""table range_check_table:
     input field;
     input field;
     input field;\n"""
@@ -143,7 +143,7 @@ def main(xs):
         and_result = [[[-1] for i in range(discriminators)] for j in range(bloom_filters)]
         for i in range(bloom_filters):
             for j in range(discriminators):
-                f.write(f"    mul r0.in{i}.bit{j} r0.in{i}.bit{discriminators + j} into r{registers_used}\n")
+                f.write(f"    mul r0.in{i}.bit{j} r0.in{i}.bit{discriminators + j} into r{registers_used};\n")
                 and_result[i][j] = f"r{registers_used}"
                 registers_used += 1
 
@@ -152,25 +152,25 @@ def main(xs):
             for j in range(bloom_filters):
                 assert(and_result[j][i] != -1)
                 if j == 0:
-                    f.write(f"    add {and_result[j][i]} {and_result[j+1][i]} r{registers_used}\n")
+                    f.write(f"    add {and_result[j][i]} {and_result[j+1][i]} into r{registers_used};\n")
                 else:
-                    f.write(f"    add {and_result[j][i]} r{registers_used - 1} r{registers_used}\n")
+                    f.write(f"    add {and_result[j][i]} r{registers_used - 1} into r{registers_used};\n")
                 registers_used += 1
             summation_result[i] = f"r{registers_used - 1}"
 
-        registers_used += 1
+        # registers_used += 1
         for i in range(discriminators):
-            f.write(f"    sub r1 {summation_result[i]} r{registers_used}\n")
+            f.write(f"    sub r1 {summation_result[i]} into r{registers_used};\n")
             registers_used += 1
-            f.write(f"    lookup range_check_table r{registers_used} 0 0\n")
+            f.write(f"    lookup range_check_table r{registers_used - 1} 0field 0field;\n")
             
-            f.write(f"    is.eq {i} r2 r{registers_used}\n")
+            f.write(f"    is.eq {i}field r2 into r{registers_used};\n")
             registers_used += 1
-            f.write(f"    is.eq r1 {summation_result[i]} r{registers_used}\n")
+            f.write(f"    is.eq r1 {summation_result[i]} into r{registers_used};\n")
             registers_used += 1
-            f.write(f"    ternary r{registers_used - 2} r{registers_used - 1} true into r{registers_used}\n")
+            f.write(f"    ternary r{registers_used - 2} r{registers_used - 1} true into r{registers_used};\n")
             registers_used += 1
-            f.write(f"    assert.eq r{registers_used - 1} true // we reached the moon\n")
+            f.write(f"    assert.eq r{registers_used - 1} true; // we reached the moon\n")
 
 
         f.write("\n")
@@ -178,15 +178,15 @@ def main(xs):
         f.write(f"    input r0 as Inputs.private;\n")
         f.write(f"    input r1 as HashInfos.private;\n")
         f.write(f"    input r2 as BloomFilterBits.private;\n")
-        f.write(f"    input r3 as max_discriminator_value.private;\n")
-        f.write(f"    input r4 as max_discriminator.private;\n")
+        f.write(f"    input r3 as field.private;\n") # max discriminator value
+        f.write(f"    input r4 as field.private;\n") # max discriminator index
         for i in range(bloom_filters):
             f.write(f"\n    call validate_hash r0.in{i} r1.info{i}.hash r1.info{i}.quotient;\n")
             f.write(f"    call validate_bit_decomposition r1.info{i}.hash r1.info{i}.decomposition;\n")
             for j in range(discriminators):
                 f.write(f"    lookup bloomtable_{i}_{j} r1.info{i}.decomposition.index1 r2.in{i}.bit{j} 0field;\n")
                 f.write(f"    lookup bloomtable_{i}_{j} r1.info{i}.decomposition.index2 r2.in{i}.bit{10+j} 0field;\n")
-        f.write(f"    call and_summation_argmax r2 r3 r4")
+        f.write(f"    call and_summation_argmax r2 r3 r4;")
     
     with open("inputs.txt", "w") as f:
         fields_string = ", ".join([f"in{i}: {x}field" for i, x in enumerate(xs)])
