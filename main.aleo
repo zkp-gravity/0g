@@ -23,10 +23,10 @@ table bloomtable:
     entry 10field 11field 12field;
 
 struct table_entry:
-    a0 as field; // 5 bits
-    a1 as field; // 5 bits
-    a2 as field; // 13 bits
-    a3 as field; // 1 bit
+    nicename as field; // bloom_filter_index 5 bits
+    a1 as field; // discriminator_index 5 bits
+    a2 as field; // hash_value 13 bits
+    a3 as field; // lookup_value 1 bit
     a4 as field; // Max_Value
 
 struct upper_table_entry:
@@ -37,7 +37,7 @@ function main:
 
     mul r0.s0.a2 2field into r1;
     add r0.s0.a3 r1 into r2;
-    lookup bloomtable r0.s0.a0 r0.s0.a2 r2;
+    lookup bloomtable r0.s0.nicename r0.s0.a2 r2;
 
     call and_values r0.s0.a3 r0.s0.a3 r0.s0.a3 r0.s0.a3 into r3;
 

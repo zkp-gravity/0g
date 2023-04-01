@@ -1,6 +1,6 @@
 {
     s0: {
-            a0: 1field,
+            nicename: 1field,
             a1: 2field,
             a2: 2field,
             a3: 1field,
