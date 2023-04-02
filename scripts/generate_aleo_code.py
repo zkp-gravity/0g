@@ -12,6 +12,7 @@ def main(xs):
     bloom_filter_values=hash_functions_per_bloom_filter
     n_hash_bits = hash_digest_value_bits
     bloom_filter_value_bits=hash_functions_per_bloom_filter*discriminators
+    packing_factor = 30
 
     assert n_hash_bits == 21
     p = 2 ** n_hash_bits - 9
@@ -47,7 +48,7 @@ def main(xs):
         table_index = 0
         for i in range(bloom_filters):
             for j in range(discriminators):
-                for entry in range(k):
+                for entry in range(k // packing_factor):
                     bloom_filter_index = bfs_data[f"discriminator{j}"][f"bloomfilter{i}"][f"entry{entry}"]["index"]
                     bloom_filter_value = bfs_data[f"discriminator{j}"][f"bloomfilter{i}"][f"entry{entry}"]["value"]
                     tables += f"    entry {table_index}field {bloom_filter_index} {bloom_filter_value};\n"
@@ -168,7 +169,6 @@ def main(xs):
                 registers_used += 1
             summation_result[i] = f"r{registers_used - 1}"
 
-        # registers_used += 1
         for i in range(discriminators):
             f.write(f"    sub r1 {summation_result[i]} into r{registers_used};\n")
             registers_used += 1
@@ -193,11 +193,9 @@ def main(xs):
         for i in range(bloom_filters):
             f.write(f"\n    call validate_hash r0.in{i} r1.info{i}.hash r1.info{i}.quotient;\n")
             f.write(f"    call validate_bit_decomposition r1.info{i}.hash r1.info{i}.decomposition;\n")
-            for j in range(discriminators):
-                table_index = i * discriminators + j
-                f.write(f"    lookup mastertable {table_index}field r1.info{i}.decomposition.index1 r2.in{i}.bit{j};\n")
-                f.write(f"    lookup mastertable {table_index}field r1.info{i}.decomposition.index2 r2.in{i}.bit{10+j};\n")
-        #f.write(f"    call and_summation_argmax r2 r3 r4;")
+        
+        # for each packed field element, we perform a lookup into the table
+        #f.write(f"    call and_summation_argmax r2 r3 r4;") # this can be computed outside of the circuit
     
     with open("inputs.txt", "w") as f:
         fields_string = ", ".join([f"in{i}: {x}field" for i, x in enumerate(xs)])
