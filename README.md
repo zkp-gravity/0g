@@ -11,12 +11,8 @@ Built as part of the ZKHack hackathon, Lisbon, 2023.
 Clone and install the [custom aleo compiler](git@github.com:zkp-gravity/aleo-setup.git) supporting lookup arguments
 
 ## Usage
+Values in the example below were generated using our fork of [BTHOWeN](https://github.com/zkp-gravity/BTHOWeN).
 ```
-python3 generate_main.py
-../aleo-setup/aleo/target/debug/aleo run main "$(cat input_bits.txt)" "$(cat hash_digest_bits.txt)" "$(cat bloom_filter_bits.txt)" 
-```
-
-```
-python3 generate_aleo_code.py 56
+python3 scripts/generate_aleo_code.py 56
 ../aleo-setup/aleo/target/debug/aleo run main "$(cat input_file.txt)" "$(cat hash_values.txt)" "$(cat bloom_filters.txt)" $(cat winning_discriminator_value.txt) "$(cat winning_discriminator_index.txt)"
 ```

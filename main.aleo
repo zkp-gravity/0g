@@ -21034,3 +21034,168 @@ function main:
 
     call validate_hash r0.in0 r1.info0.hash r1.info0.quotient;
     call validate_bit_decomposition r1.info0.hash r1.info0.decomposition;
+
+    call validate_hash r0.in1 r1.info1.hash r1.info1.quotient;
+    call validate_bit_decomposition r1.info1.hash r1.info1.decomposition;
+
+    call validate_hash r0.in2 r1.info2.hash r1.info2.quotient;
+    call validate_bit_decomposition r1.info2.hash r1.info2.decomposition;
+
+    call validate_hash r0.in3 r1.info3.hash r1.info3.quotient;
+    call validate_bit_decomposition r1.info3.hash r1.info3.decomposition;
+
+    call validate_hash r0.in4 r1.info4.hash r1.info4.quotient;
+    call validate_bit_decomposition r1.info4.hash r1.info4.decomposition;
+
+    call validate_hash r0.in5 r1.info5.hash r1.info5.quotient;
+    call validate_bit_decomposition r1.info5.hash r1.info5.decomposition;
+
+    call validate_hash r0.in6 r1.info6.hash r1.info6.quotient;
+    call validate_bit_decomposition r1.info6.hash r1.info6.decomposition;
+
+    call validate_hash r0.in7 r1.info7.hash r1.info7.quotient;
+    call validate_bit_decomposition r1.info7.hash r1.info7.decomposition;
+
+    call validate_hash r0.in8 r1.info8.hash r1.info8.quotient;
+    call validate_bit_decomposition r1.info8.hash r1.info8.decomposition;
+
+    call validate_hash r0.in9 r1.info9.hash r1.info9.quotient;
+    call validate_bit_decomposition r1.info9.hash r1.info9.decomposition;
+
+    call validate_hash r0.in10 r1.info10.hash r1.info10.quotient;
+    call validate_bit_decomposition r1.info10.hash r1.info10.decomposition;
+
+    call validate_hash r0.in11 r1.info11.hash r1.info11.quotient;
+    call validate_bit_decomposition r1.info11.hash r1.info11.decomposition;
+
+    call validate_hash r0.in12 r1.info12.hash r1.info12.quotient;
+    call validate_bit_decomposition r1.info12.hash r1.info12.decomposition;
+
+    call validate_hash r0.in13 r1.info13.hash r1.info13.quotient;
+    call validate_bit_decomposition r1.info13.hash r1.info13.decomposition;
+
+    call validate_hash r0.in14 r1.info14.hash r1.info14.quotient;
+    call validate_bit_decomposition r1.info14.hash r1.info14.decomposition;
+
+    call validate_hash r0.in15 r1.info15.hash r1.info15.quotient;
+    call validate_bit_decomposition r1.info15.hash r1.info15.decomposition;
+
+    call validate_hash r0.in16 r1.info16.hash r1.info16.quotient;
+    call validate_bit_decomposition r1.info16.hash r1.info16.decomposition;
+
+    call validate_hash r0.in17 r1.info17.hash r1.info17.quotient;
+    call validate_bit_decomposition r1.info17.hash r1.info17.decomposition;
+
+    call validate_hash r0.in18 r1.info18.hash r1.info18.quotient;
+    call validate_bit_decomposition r1.info18.hash r1.info18.decomposition;
+
+    call validate_hash r0.in19 r1.info19.hash r1.info19.quotient;
+    call validate_bit_decomposition r1.info19.hash r1.info19.decomposition;
+
+    call validate_hash r0.in20 r1.info20.hash r1.info20.quotient;
+    call validate_bit_decomposition r1.info20.hash r1.info20.decomposition;
+
+    call validate_hash r0.in21 r1.info21.hash r1.info21.quotient;
+    call validate_bit_decomposition r1.info21.hash r1.info21.decomposition;
+
+    call validate_hash r0.in22 r1.info22.hash r1.info22.quotient;
+    call validate_bit_decomposition r1.info22.hash r1.info22.decomposition;
+
+    call validate_hash r0.in23 r1.info23.hash r1.info23.quotient;
+    call validate_bit_decomposition r1.info23.hash r1.info23.decomposition;
+
+    call validate_hash r0.in24 r1.info24.hash r1.info24.quotient;
+    call validate_bit_decomposition r1.info24.hash r1.info24.decomposition;
+
+    call validate_hash r0.in25 r1.info25.hash r1.info25.quotient;
+    call validate_bit_decomposition r1.info25.hash r1.info25.decomposition;
+
+    call validate_hash r0.in26 r1.info26.hash r1.info26.quotient;
+    call validate_bit_decomposition r1.info26.hash r1.info26.decomposition;
+
+    call validate_hash r0.in27 r1.info27.hash r1.info27.quotient;
+    call validate_bit_decomposition r1.info27.hash r1.info27.decomposition;
+
+    call validate_hash r0.in28 r1.info28.hash r1.info28.quotient;
+    call validate_bit_decomposition r1.info28.hash r1.info28.decomposition;
+
+    call validate_hash r0.in29 r1.info29.hash r1.info29.quotient;
+    call validate_bit_decomposition r1.info29.hash r1.info29.decomposition;
+
+    call validate_hash r0.in30 r1.info30.hash r1.info30.quotient;
+    call validate_bit_decomposition r1.info30.hash r1.info30.decomposition;
+
+    call validate_hash r0.in31 r1.info31.hash r1.info31.quotient;
+    call validate_bit_decomposition r1.info31.hash r1.info31.decomposition;
+
+    call validate_hash r0.in32 r1.info32.hash r1.info32.quotient;
+    call validate_bit_decomposition r1.info32.hash r1.info32.decomposition;
+
+    call validate_hash r0.in33 r1.info33.hash r1.info33.quotient;
+    call validate_bit_decomposition r1.info33.hash r1.info33.decomposition;
+
+    call validate_hash r0.in34 r1.info34.hash r1.info34.quotient;
+    call validate_bit_decomposition r1.info34.hash r1.info34.decomposition;
+
+    call validate_hash r0.in35 r1.info35.hash r1.info35.quotient;
+    call validate_bit_decomposition r1.info35.hash r1.info35.decomposition;
+
+    call validate_hash r0.in36 r1.info36.hash r1.info36.quotient;
+    call validate_bit_decomposition r1.info36.hash r1.info36.decomposition;
+
+    call validate_hash r0.in37 r1.info37.hash r1.info37.quotient;
+    call validate_bit_decomposition r1.info37.hash r1.info37.decomposition;
+
+    call validate_hash r0.in38 r1.info38.hash r1.info38.quotient;
+    call validate_bit_decomposition r1.info38.hash r1.info38.decomposition;
+
+    call validate_hash r0.in39 r1.info39.hash r1.info39.quotient;
+    call validate_bit_decomposition r1.info39.hash r1.info39.decomposition;
+
+    call validate_hash r0.in40 r1.info40.hash r1.info40.quotient;
+    call validate_bit_decomposition r1.info40.hash r1.info40.decomposition;
+
+    call validate_hash r0.in41 r1.info41.hash r1.info41.quotient;
+    call validate_bit_decomposition r1.info41.hash r1.info41.decomposition;
+
+    call validate_hash r0.in42 r1.info42.hash r1.info42.quotient;
+    call validate_bit_decomposition r1.info42.hash r1.info42.decomposition;
+
+    call validate_hash r0.in43 r1.info43.hash r1.info43.quotient;
+    call validate_bit_decomposition r1.info43.hash r1.info43.decomposition;
+
+    call validate_hash r0.in44 r1.info44.hash r1.info44.quotient;
+    call validate_bit_decomposition r1.info44.hash r1.info44.decomposition;
+
+    call validate_hash r0.in45 r1.info45.hash r1.info45.quotient;
+    call validate_bit_decomposition r1.info45.hash r1.info45.decomposition;
+
+    call validate_hash r0.in46 r1.info46.hash r1.info46.quotient;
+    call validate_bit_decomposition r1.info46.hash r1.info46.decomposition;
+
+    call validate_hash r0.in47 r1.info47.hash r1.info47.quotient;
+    call validate_bit_decomposition r1.info47.hash r1.info47.decomposition;
+
+    call validate_hash r0.in48 r1.info48.hash r1.info48.quotient;
+    call validate_bit_decomposition r1.info48.hash r1.info48.decomposition;
+
+    call validate_hash r0.in49 r1.info49.hash r1.info49.quotient;
+    call validate_bit_decomposition r1.info49.hash r1.info49.decomposition;
+
+    call validate_hash r0.in50 r1.info50.hash r1.info50.quotient;
+    call validate_bit_decomposition r1.info50.hash r1.info50.decomposition;
+
+    call validate_hash r0.in51 r1.info51.hash r1.info51.quotient;
+    call validate_bit_decomposition r1.info51.hash r1.info51.decomposition;
+
+    call validate_hash r0.in52 r1.info52.hash r1.info52.quotient;
+    call validate_bit_decomposition r1.info52.hash r1.info52.decomposition;
+
+    call validate_hash r0.in53 r1.info53.hash r1.info53.quotient;
+    call validate_bit_decomposition r1.info53.hash r1.info53.decomposition;
+
+    call validate_hash r0.in54 r1.info54.hash r1.info54.quotient;
+    call validate_bit_decomposition r1.info54.hash r1.info54.decomposition;
+
+    call validate_hash r0.in55 r1.info55.hash r1.info55.quotient;
+    call validate_bit_decomposition r1.info55.hash r1.info55.decomposition;
