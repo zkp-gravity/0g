@@ -40,37 +40,34 @@ def main(xs):
             bfs_data = json.load(bfs_file)
         
         # Amount of entries should be `discriminators` * `bloom_filters` * `k`, the values of entries
-        tables = ""
-        increasing_number = 1024
-        for i in range(bloom_filters):
-            for j in range(discriminators):
-                tables += f"""table bloomtable_{i}_{j}:
+        tables = f"""table mastertable:
     input field;
     input field;
     input field;\n"""
+        table_index = 0
+        for i in range(bloom_filters):
+            for j in range(discriminators):
                 for entry in range(k):
                     bloom_filter_index = bfs_data[f"discriminator{j}"][f"bloomfilter{i}"][f"entry{entry}"]["index"]
                     bloom_filter_value = bfs_data[f"discriminator{j}"][f"bloomfilter{i}"][f"entry{entry}"]["value"]
-                    tables += f"    entry {bloom_filter_index} {bloom_filter_value} 0field;\n"
-                for entry in range(k):
-                    tables += f"    entry {increasing_number}field {increasing_number}field {increasing_number}field;\n"
-                    increasing_number += 1
+                    tables += f"    entry {table_index}field {bloom_filter_index} {bloom_filter_value};\n"
+                table_index += 1
 
                 tables += f"\n"
         f.write(tables)
 
-        range_check_table = ""
-        range_check_table += f"""table range_check_table:
-    input field;
-    input field;
-    input field;\n"""
-        for i in range(bloom_filters):
-            range_check_table += f"    entry {i}field 0field 0field;\n"
-        for entry in range(1992):
-            range_check_table += f"    entry {increasing_number}field {increasing_number}field {increasing_number}field;\n"
-            increasing_number += 1
-        range_check_table += f"\n"
-        #f.write(range_check_table)
+    #     range_check_table = ""
+    #     range_check_table += f"""table range_check_table:
+    # input field;
+    # input field;
+    # input field;\n"""
+    #     for i in range(bloom_filters):
+    #         range_check_table += f"    entry {i}field 0field 0field;\n"
+    #     for entry in range(1992):
+    #         range_check_table += f"    entry {increasing_number}field {increasing_number}field {increasing_number}field;\n"
+    #         increasing_number += 1
+    #     range_check_table += f"\n"
+    #     #f.write(range_check_table)
 
 
         f.write("\n")
@@ -197,8 +194,9 @@ def main(xs):
             f.write(f"\n    call validate_hash r0.in{i} r1.info{i}.hash r1.info{i}.quotient;\n")
             f.write(f"    call validate_bit_decomposition r1.info{i}.hash r1.info{i}.decomposition;\n")
             for j in range(discriminators):
-                f.write(f"    lookup bloomtable_{i}_{j} r1.info{i}.decomposition.index1 r2.in{i}.bit{j} 0field;\n")
-                f.write(f"    lookup bloomtable_{i}_{j} r1.info{i}.decomposition.index2 r2.in{i}.bit{10+j} 0field;\n")
+                table_index = i * discriminators + j
+                f.write(f"    lookup mastertable {table_index}field r1.info{i}.decomposition.index1 r2.in{i}.bit{j};\n")
+                f.write(f"    lookup mastertable {table_index}field r1.info{i}.decomposition.index2 r2.in{i}.bit{10+j};\n")
         #f.write(f"    call and_summation_argmax r2 r3 r4;")
     
     with open("inputs.txt", "w") as f:
