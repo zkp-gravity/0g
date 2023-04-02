@@ -1,4 +1,5 @@
 import sys
+import json
 
 def main(xs):
 
@@ -34,9 +35,13 @@ def main(xs):
 
         f.write(f"program main.aleo;\n\n")
 
+        bfs_data = {}
+        with open("all_bfs.txt", "r") as bfs_file:
+            bfs_data = json.load(bfs_file)
+        
         # Amount of entries should be `discriminators` * `bloom_filters` * `k`, the values of entries
-        tableentrycounter = 0 # TODO: We need to import values from a program run
         tables = ""
+        increasing_number = 1024
         for i in range(bloom_filters):
             for j in range(discriminators):
                 tables += f"""table bloomtable_{i}_{j}:
@@ -44,8 +49,13 @@ def main(xs):
     input field;
     input field;\n"""
                 for entry in range(k):
-                    tableentrycounter += 1 # [0,2**10]              [0,1]
-                    tables += f"    entry {tableentrycounter}field {tableentrycounter}field 0field;\n"
+                    bloom_filter_index = bfs_data[f"discriminator{j}"][f"bloomfilter{i}"][f"entry{entry}"]["index"]
+                    bloom_filter_value = bfs_data[f"discriminator{j}"][f"bloomfilter{i}"][f"entry{entry}"]["value"]
+                    tables += f"    entry {bloom_filter_index} {bloom_filter_value} 0field;\n"
+                for entry in range(k):
+                    tables += f"    entry {increasing_number}field {increasing_number}field {increasing_number}field;\n"
+                    increasing_number += 1
+
                 tables += f"\n"
         f.write(tables)
 
@@ -56,8 +66,11 @@ def main(xs):
     input field;\n"""
         for i in range(bloom_filters):
             range_check_table += f"    entry {i}field 0field 0field;\n"
+        for entry in range(1992):
+            range_check_table += f"    entry {increasing_number}field {increasing_number}field {increasing_number}field;\n"
+            increasing_number += 1
         range_check_table += f"\n"
-        f.write(range_check_table)
+        #f.write(range_check_table)
 
 
         f.write("\n")
@@ -128,9 +141,9 @@ def main(xs):
         f.write("\n")
         f.write(f"    // Recompute x\n")
         f.write(f"    mul r1.msb {1 << 10}field into r4;\n")
-        f.write(f"    add r4 r1.index1 into r5;\n")
+        f.write(f"    add r4 r1.index2 into r5;\n")
         f.write(f"    mul r5 {1 << 10}field into r6;\n")
-        f.write(f"    add r6 r1.index2 into r7;\n")
+        f.write(f"    add r6 r1.index1 into r7;\n")
         f.write("\n")
         f.write(f"    // Assert recomputed value equals first argument\n")
         f.write(f"    assert.eq r0 r7;\n\n")
@@ -152,7 +165,7 @@ def main(xs):
             for j in range(bloom_filters):
                 assert(and_result[j][i] != -1)
                 if j == 0:
-                    f.write(f"    add {and_result[j][i]} {and_result[j+1][i]} into r{registers_used};\n")
+                    f.write(f"    add {and_result[j][i]} 0field into r{registers_used};\n")
                 else:
                     f.write(f"    add {and_result[j][i]} r{registers_used - 1} into r{registers_used};\n")
                 registers_used += 1
@@ -162,7 +175,7 @@ def main(xs):
         for i in range(discriminators):
             f.write(f"    sub r1 {summation_result[i]} into r{registers_used};\n")
             registers_used += 1
-            f.write(f"    lookup range_check_table r{registers_used - 1} 0field 0field;\n")
+            # f.write(f"    lookup range_check_table r{registers_used - 1} 0field 0field;\n")
             
             f.write(f"    is.eq {i}field r2 into r{registers_used};\n")
             registers_used += 1
@@ -186,7 +199,7 @@ def main(xs):
             for j in range(discriminators):
                 f.write(f"    lookup bloomtable_{i}_{j} r1.info{i}.decomposition.index1 r2.in{i}.bit{j} 0field;\n")
                 f.write(f"    lookup bloomtable_{i}_{j} r1.info{i}.decomposition.index2 r2.in{i}.bit{10+j} 0field;\n")
-        f.write(f"    call and_summation_argmax r2 r3 r4;")
+        #f.write(f"    call and_summation_argmax r2 r3 r4;")
     
     with open("inputs.txt", "w") as f:
         fields_string = ", ".join([f"in{i}: {x}field" for i, x in enumerate(xs)])
