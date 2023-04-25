@@ -46,15 +46,20 @@ def main(xs):
     input field;
     input field;\n"""
         table_index = 0
+        table_entries = []
         for i in range(bloom_filters):
             for j in range(discriminators):
-                for entry in range(k // packing_factor):
-                    bloom_filter_index = bfs_data[f"discriminator{j}"][f"bloomfilter{i}"][f"entry{entry}"]["index"]
-                    bloom_filter_value = bfs_data[f"discriminator{j}"][f"bloomfilter{i}"][f"entry{entry}"]["value"]
-                    tables += f"    entry {table_index}field {bloom_filter_index} {bloom_filter_value};\n"
+                for entry in range(k):
+                    bloom_filter_index = bfs_data[f"discriminator{j}"][f"bloomfilter{i}"][f"entry{entry}"]["index"][:-5]
+                    bloom_filter_value = bfs_data[f"discriminator{j}"][f"bloomfilter{i}"][f"entry{entry}"]["value"][:-5]
+                    bloom_filter_summary = 2*int(bloom_filter_index) + int(bloom_filter_value)
+                    # NOTE: in the current lookup implementation, the first two entries have to uniquely define the operation
+                    table_entries.append((str(table_index), bloom_filter_index, bloom_filter_value, f"    entry {table_index}field {bloom_filter_summary}field 0field;\n"))
                 table_index += 1
 
-                tables += f"\n"
+        for entry in table_entries:
+            tables += entry[3]
+
         f.write(tables)
 
     #     range_check_table = ""
@@ -189,13 +194,26 @@ def main(xs):
         f.write(f"    input r1 as HashInfos.private;\n")
         f.write(f"    input r2 as BloomFilterBits.private;\n")
         f.write(f"    input r3 as field.private;\n") # max discriminator value
-        f.write(f"    input r4 as field.private;\n") # max discriminator index
+        f.write(f"    input r4 as field.public;\n") # max discriminator index
+        registers_used = 5
+        table_index = 0
         for i in range(bloom_filters):
             f.write(f"\n    call validate_hash r0.in{i} r1.info{i}.hash r1.info{i}.quotient;\n")
             f.write(f"    call validate_bit_decomposition r1.info{i}.hash r1.info{i}.decomposition;\n")
         
         # for each packed field element, we perform a lookup into the table
-        #f.write(f"    call and_summation_argmax r2 r3 r4;") # this can be computed outside of the circuit
+            for j in range(discriminators):
+                table_index = i * discriminators + j
+                f.write(f"    mul 2field r1.info{i}.decomposition.index1 into r{registers_used};\n")
+                f.write(f"    mul 2field r1.info{i}.decomposition.index2 into r{registers_used + 1};\n")
+                registers_used += 2
+                f.write(f"    add r{registers_used - 2} r2.in{i}.bit{j} into r{registers_used};\n")
+                f.write(f"    add r{registers_used - 1} r2.in{i}.bit{10 + j} into r{registers_used + 1};\n")
+                registers_used += 2
+                f.write(f"    lookup mastertable {table_index}field r{registers_used - 1} 0field;\n")
+                f.write(f"    lookup mastertable {table_index}field r{registers_used - 2} 0field;\n")
+
+        f.write(f"    call and_summation_argmax r2 r3 r4;") # this can be computed outside of the circuit
     
     with open("inputs.txt", "w") as f:
         fields_string = ", ".join([f"in{i}: {x}field" for i, x in enumerate(xs)])
